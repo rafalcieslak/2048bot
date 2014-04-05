@@ -1,30 +1,36 @@
 2048bot, Copyright 2014 Rafał Cieślak
 This software is released and distributed under the terms of GNU GPL v3.
 See LICENSE file for details. 
-This software is provided with hope that it will be useful, but without any form of warrancies or
-guarantees for fitnes to any particular purpose.
+This software is provided with hope that it will be useful, but without any
+form of warrancies or guarantees for fitnes to any particular purpose.
 
 0) About the application.
 
-  This application is a simple and easy-to-expand automatic bot that plays the famous 2048 game.
-  It probes the screen to determine game state, and emulates keypresses to perform moves.
-  As opposed to popular javascript-based bots, this one runs separatelly from the browser, and
-  therefore it is easier to trust it that it does not cheat by affecting game's actual algorithm.
-  You are also welcome to test it on alternative versions of 2048, as long as the grid is 4x4,
-  and no custom tile theme is used.
+  This application is a simple and easy-to-expand automatic bot that plays the
+  famous 2048 game. It probes the screen to determine game state, and emulates
+  keypresses to perform moves.
+  As opposed to popular javascript-based bots, this one runs separatelly from
+  the browser, and therefore it is easier to trust it that it does not cheat by
+  affecting game's actual algorithm. You are also welcome to test it on
+  alternative versions of 2048, as long as the grid is 4x4, and no custom tile
+  theme is used.
 
-  The bot is written in Python and C++. It has been tested to work on Linux, but since all
-  libraries it uses are cross-platform, I am convinced it should run on Windows as well.
+  The bot is written in Python and C++. It has been tested to work on Linux,
+  but since all libraries it uses are cross-platform, I am convinced it should
+  run on Windows as well.
 
 1) Preparing to run the bot.
 
-  The bot itself is a python script, but it relies on an algoritm which is provided as an external
-  module prepared in C++. You need to build the module on your computer before the bot will work.
+  The bot itself is a python script, but it relies on an algoritm which is
+  provided as an external module prepared in C++. You need to build the module
+  on your computer before the bot will work.
 
   To build the core_bot module,  enter the bot_core directory, and run:
-    python2 setup.py build
-  and copy the bot_core.so (or bot_core.dll) file from bot_core/build/lib.YOUR_ARCH/
-  directory into this one (symlink is also fine).
+      python2 setup.py build
+  and copy the bot_core.so (or bot_core.dll) file from
+      bot_core/build/lib.YOUR_ARCH/
+  directory into the root directory (the one with 2048bot.py) (a symlink is
+  also fine).
   
   On Linux systems, you can simply run 
      ./build_core-linux.sh
@@ -33,44 +39,54 @@ guarantees for fitnes to any particular purpose.
 2) Running the bot.
 
   a) Open the standard game version in a web browser.
-  Make sure the window is resized and page is scrolled so that full game area is visible.
-  [The bot will probe screen pixels to learn what tha current game state is.]
 
-  b) Use python to run 2048bot.py.
-  c) Click game area's upper left corner, and then the lower right corner, so that the bot will
-  learn where to look for the game field.
+  Make sure the window is resized and page is scrolled so that full game area
+  is visible. [The bot will probe screen pixels to learn what the current game
+  state is.]
+
+  b) Use python2 to run 2048bot.py.
+  c) Click game area's upper left corner, and then the lower right corner, so
+  that the bot will learn where to look for the game field.
   
-  The bot will start playing the game by emulating keypresses. If you move the focus from the
-  browser and the game page, the keypresses will be send wherever you have moved the focus, and 
-  therefore the bot will stop functioning. It keeps probing the same screen area that you have
-  marked, so scrolling the game page, moving browser window, covering it with some other window
-  etc. will obstruct the bot, it will stop or crash.
+  The bot will start playing the game by emulating keypresses. If you move the
+  focus from the browser and the game page, the keypresses will be send
+  wherever you have moved the focus, and  therefore the bot will stop
+  functioning. It keeps probing the same screen area that you have marked, so
+  scrolling the game page, moving browser window, covering it with some other
+  window etc. will obstruct the bot, it will stop or crash.
 
   To exit the bot, click anywhere else, or send it a Ctrl+C.
 
 
 3) Troubleshooting
 
-- If the bot is complaining about missing modules (pygtk, pyuserinput), you need to make sure these
-  are installed in your system.
+- If the bot is complaining about missing modules (pygtk, pyuserinput), you
+  need to make sure these are installed in your system.
 
-- If the bot is not complaining about anything, but it looks like it is stuck, or it is taking a long
-  to make a move, you may want to decrease the `depth` variable at the top of 2048bot.py file. This
-  will decrease bot's chance to win, but will get it to work faster.
+- If the bot is not complaining about anything, but it looks like it is stuck,
+  or it is taking a long to make a move, you may want to decrease the `depth`
+  variable at the top of 2048bot.py file. This will decrease bot's chance to
+  win, but will get it to work faster.
 
 - What should I do if the bot says:
 
   Unable to recognize game board state!
-  Refer to README file for details and information on how to deal with this problem.
+  Refer to README file for details and information on how to deal with this
+  problem.
 
-    This may happen in following cases:
-     1) A fancy 'You won!' message is being displayed. But in such case, you will ignore this issue anyway.
-     2) You have incorrectly marked the game area.
-     3) You are playing a custom game version with non-standard tiles. Such versions are not supported.
-     4) Another window is overlaying the game area. Keep in mind that whole game field has to be visible in
-        order for this bot to work, as it is determining game state by probing pixels on the screen!
-     5) An animation was being played when board detection was run. If your computer is slow at animating
-        tile movement, you may want to adjust `sleeptime` variable in 2048bot.py. This may also happen if
-        you disturb the bot by playing the game WHILE it runs - don't do that.
-     6) Also, avoid moving the mouse pointer over the game field while the bot works - it may disturb it as
-        well.
+  This may happen in following cases:
+   1) A fancy 'You won!' message is being displayed. But in such case, you
+      will probably ignore this issue anyway.
+   2) You have incorrectly marked the game area.
+   3) You are playing a custom game version with non-standard tiles. Such
+      versions are not supported.
+   4) Another window is overlaying the game area. Keep in mind that the whole
+      game field has to be visible in order for this bot to work, as it is
+      determining game state by probing pixels on the screen!
+   5) An animation was being played when board detection was run. If your
+      computer is slow at animating tile movement, you may want to adjust
+      `sleeptime` variable in 2048bot.py. This may also happen if you disturb
+      the bot by playing the game WHILE it runs - don't do that.
+   6) Also, avoid moving the mouse pointer over the game field while the bot
+      works - it may disturb it as
+      well.
