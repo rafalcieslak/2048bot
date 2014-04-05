@@ -4,7 +4,7 @@ See LICENSE file for details.
 This software is provided with hope that it will be useful, but without any
 form of warrancies or guarantees for fitnes to any particular purpose.
 
-0) About the application.
+0) About the software
 
   This application is a simple and easy-to-expand automatic bot that plays the
   famous 2048 game. It probes the screen to determine game state, and emulates
@@ -19,7 +19,9 @@ form of warrancies or guarantees for fitnes to any particular purpose.
   but since all libraries it uses are cross-platform, I am convinced it should
   run on Windows as well.
 
-1) Preparing to run the bot.
+  You can play 2048 at http://gabrielecirulli.github.io/2048/
+
+1) Preparing to run the bot
 
   The bot itself is a python script, but it relies on an algoritm which is
   provided as an external module prepared in C++. You need to build the module
@@ -36,7 +38,7 @@ form of warrancies or guarantees for fitnes to any particular purpose.
      ./build_core-linux.sh
   which will do the above
 
-2) Running the bot.
+2) Running the bot
 
   a) Open the standard game version in a web browser.
 
